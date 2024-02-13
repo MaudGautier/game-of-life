@@ -5,10 +5,21 @@ SIZE = 10
 grid = [[random() > 0.5 for _ in range(SIZE)] for _ in range(SIZE)]
 
 
+def convert_nicely(state):
+    if state == True:
+        return "█"
+    return " "
+
 
 def display(grid):
     for x in range(SIZE):
-        print(grid[x])
+        for y in range(SIZE):
+            print(convert_nicely(grid[x][y]), end="")
+        print("")
+
+def display_counts(counts_grid):
+    for x in range(SIZE):
+        print(counts_grid[x])
 
 
 def count_neighbors(grid, x, y):
@@ -32,10 +43,40 @@ def compute_counts_grid(grid):
     return counts
 
 
+def should_live(count, current_state):
+    # Any live cell with fewer than two live neighbors dies, as if by underpopulation.
+    # Any live cell with two or three live neighbors lives on to the next generation.
+    # Any live cell with more than three live neighbors dies, as if by overpopulation.
+    # Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+
+    if count < 2:
+        return False
+    if count == 3:
+        return True
+    if count == 2:
+        return current_state
+    if count > 3:
+        return False
+
+    raise ValueError("SHould never get here")
+
+
+def apply_rules(grid):
+    counts_grid = compute_counts_grid(grid)
+    for x in range(SIZE):
+        for y in range(SIZE):
+            count = counts_grid[x][y]
+            is_alive = should_live(count, grid[x][y])
+            grid[x][y] = is_alive
+
 
 if __name__ == '__main__':
     print("Original grid")
     display(grid)
     counts = compute_counts_grid(grid)
     print("Counts grid")
-    display(counts)
+    display_counts(counts)
+
+    print("After 1 cycle")
+    apply_rules(grid)
+    display(grid)
