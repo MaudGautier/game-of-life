@@ -81,6 +81,7 @@ if __name__ == '__main__':
     print("Counts grid")
     display_counts(counts)
 
-    print("After 1 cycle")
-    apply_rules(grid)
-    display(grid)
+    for cycle in range(3):
+        print("After cycle", cycle)
+        apply_rules(grid)
+        display(grid)
