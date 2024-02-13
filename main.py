@@ -1,4 +1,7 @@
+import sys
 from random import random
+import os
+from time import sleep
 
 SIZE = 10
 
@@ -82,6 +85,9 @@ if __name__ == '__main__':
     display_counts(counts)
 
     for cycle in range(3):
+        sleep(1)
+        os.system("clear")
         print("After cycle", cycle)
         apply_rules(grid)
         display(grid)
+        sys.stdout.flush()
