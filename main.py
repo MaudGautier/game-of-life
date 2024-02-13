@@ -2,12 +2,16 @@ from random import random
 
 SIZE = 10
 
-grid = [[random() > 0.5 for _ in range(SIZE)] for _ in range(SIZE)]
+# grid = [[random() > 0.5 for _ in range(SIZE)] for _ in range(SIZE)]
+grid = [[0 for _ in range(SIZE)] for _ in range(SIZE)]
+grid[3][4] = 1
+grid[3][5] = 1
+grid[3][6] = 1
 
 
 def convert_nicely(state):
     if state == True:
-        return "█"
+        return "#"
     return " "
 
 
