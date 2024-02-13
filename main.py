@@ -3,13 +3,13 @@ from random import random
 import os
 from time import sleep
 
-SIZE = 10
+SIZE = 50
 
-# grid = [[random() > 0.5 for _ in range(SIZE)] for _ in range(SIZE)]
-grid = [[0 for _ in range(SIZE)] for _ in range(SIZE)]
-grid[3][4] = 1
-grid[3][5] = 1
-grid[3][6] = 1
+grid = [[random() > 0.5 for _ in range(SIZE)] for _ in range(SIZE)]
+# grid = [[0 for _ in range(SIZE)] for _ in range(SIZE)]
+# grid[3][4] = 1
+# grid[3][5] = 1
+# grid[3][6] = 1
 
 
 def convert_nicely(state):
@@ -84,10 +84,10 @@ if __name__ == '__main__':
     print("Counts grid")
     display_counts(counts)
 
-    for cycle in range(3):
-        sleep(1)
+    for cycle in range(1000):
+        sleep(0.03)
         os.system("clear")
-        print("After cycle", cycle)
+        # print("After cycle", cycle)
         apply_rules(grid)
         display(grid)
         sys.stdout.flush()
