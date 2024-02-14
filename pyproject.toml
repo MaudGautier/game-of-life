@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "game-of-life-2"
+name = "game-of-life"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Maud Gautier", "Ludwig Schubert"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
