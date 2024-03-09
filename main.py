@@ -3,17 +3,11 @@ from random import random
 import os
 from time import sleep
 
-SIZE = (30,60)
-
-
-# grid = [[0 for _ in range(SIZE)] for _ in range(SIZE)]
-# grid[3][4] = 1
-# grid[3][5] = 1
-# grid[3][6] = 1
+SIZE = (40, 80)
 
 
 def convert_nicely(state):
-    if state == True:
+    if state is True:
         return "█"
     return " "
 
@@ -23,6 +17,7 @@ def display(grid):
         for y in range(len(grid[x])):
             print(convert_nicely(grid[x][y]), end="")
         print("")
+
 
 def display_counts(counts_grid):
     for x in range(len(counts_grid)):
@@ -60,14 +55,12 @@ def should_live(count, current_state):
 
     if count < 2:
         return False
-    if count == 3:
-        return True
     if count == 2:
         return current_state
+    if count == 3:
+        return True
     if count > 3:
         return False
-
-    raise ValueError("SHould never get here")
 
 
 def apply_rules(grid):
@@ -80,20 +73,16 @@ def apply_rules(grid):
             new_grid[x][y] = is_alive
     return new_grid
 
+
 if __name__ == '__main__':
     grid = [[random() > 0.5 for _ in range(SIZE[1])] for _ in range(SIZE[0])]
-    print("Original grid")
-    display(grid)
-    counts = compute_counts_grid(grid)
-    print("Counts grid")
-    display_counts(counts)
 
     while True:
         new_grid = apply_rules(grid)
         if new_grid == grid:
             print("Grid no longer evolves")
             exit(0)
-        
+
         # display new grid
         os.system("clear")
         display(new_grid)
@@ -101,4 +90,3 @@ if __name__ == '__main__':
 
         grid = new_grid
         sleep(1 / 30.0)
-
