@@ -1,9 +1,12 @@
 import sys
 from random import random
-import os
 from time import sleep
 
 SIZE = (40, 80)
+
+
+def clear_screen():
+    print("\033[H\033[J", end='')
 
 
 def convert_nicely(state):
@@ -13,10 +16,8 @@ def convert_nicely(state):
 
 
 def display(grid):
-    for x in range(len(grid)):
-        for y in range(len(grid[x])):
-            print(convert_nicely(grid[x][y]), end="")
-        print("")
+    output = '\n'.join(''.join(convert_nicely(grid[x][y]) for y in range(len(grid[x]))) for x in range(len(grid)))
+    print(output)
 
 
 def display_counts(counts_grid):
@@ -84,7 +85,7 @@ if __name__ == '__main__':
             exit(0)
 
         # display new grid
-        os.system("clear")
+        clear_screen()
         display(new_grid)
         sys.stdout.flush()
 
