@@ -7,11 +7,14 @@ of [Conway's game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 ## Getting started
 
 ```
-# Install dependencies (there is none woops 🙈)
-poetry install
+# Activate poetry's virtual environment
+poetry shell
 
 # Run the game of life !
-poetry run python main.py
+poetry run python3 main.py
+
+# Deactivate the virtual environment when finished
+deactivate
 ```
 
 ## Rules of the game
